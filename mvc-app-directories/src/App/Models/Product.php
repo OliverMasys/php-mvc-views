@@ -11,11 +11,11 @@ class Product
     {
         $dsn = "mysql:
                 host=localhost;
-                dbname=adv_php;
+                dbname=sherd_JimBelushi;
                 charset=utf8;
                 port=3306";
 
-        return new PDO($dsn, "adv_php_user", "Secret", [
+        return new PDO($dsn, "sherd_JimBelushi", "adpujdB734kf3", [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);
     }

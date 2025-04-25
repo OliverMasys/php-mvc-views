@@ -12,10 +12,8 @@ class Products
 {
     public function index()
     {
-
-        //require "src/models/product.php";
-
-        $model = new Product();
+        // create new model object
+        $model = new Product;
 
         // call getData() method from product model
         // assign result set to $products variable
@@ -26,22 +24,20 @@ class Products
             throw new PageNotFoundException("Product not found");
             
         }
-
-        $viewer = new Viewer;
+                $viewer = new Viewer;
 
         echo $viewer->render("shared/header.php", [
-            "title" => "Product List"
+            "title" => "Products"
         ]);
 
+        // pass db result set to view in array named "products"
         echo $viewer->render("Products/index.php", [
             "products" => $products
         ]);
-        //require "views/product-list.php";
     }
 
-    public function show(?string $id = NULL)
+    public function show(string $id = NULL)
     {
-
         $model = new Product;
 
         $product = $model->find($id);
@@ -49,14 +45,16 @@ class Products
         if ($product === false) {
 
             throw new PageNotFoundException("Product not found");
-        }   
-        
-        $viewer = new Viewer;
+            
+        }        $viewer = new Viewer;
 
         echo $viewer->render("shared/header.php", [
-            "title" => "Product Details"
+            "title" => "Product"
         ]);
 
-        echo $viewer->render("Products/show.php");
+        // pass db result set to view in array named "product"
+        echo $viewer->render("Products/show.php", [
+            "product" => $product
+        ]);
     }
 }
